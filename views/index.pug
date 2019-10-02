@@ -1,0 +1,59 @@
+extends layout
+
+block content
+
+  h1 Echo Bot 
+
+  p.
+    This app will demonstrate how to support the ability for:
+    
+  ul
+    li A single Workplace app that may be installed many times into a single Workplace tenant
+    li An app installation that can be named and granted some or all available permissions
+    li Webhook subscription confirmation
+    li Webhook callback verification 
+    li Looking up the appropriate page access token based on the incoming page id
+    li Replying to an incoming message with a simple response
+
+
+  - const dialogBase = `https://work.facebook.com/v3.3/dialog`;
+  - const dialogFeatures = [['width', 800], ['height', 800], ['left', 100], ['top', 100]].map(feature => feature[0] + '=' + feature[1]).join(',')
+  - const onsubmit = `window.open('', 'wp', '${dialogFeatures}'); this.target = 'wp'`;
+  
+  h2 Install The Bot Into Your Workplace Tenant
+    form(action=dialogBase + '/work/app_install' method="get" onsubmit=onsubmit)
+      input(type="hidden", name="app_id", value=appId)
+      input(type="hidden", name="redirect_uri", value=redirectUri)
+      div.form-group
+        p Requested permissions:
+          each val in ["message", "read_user_email"]
+            div.checkbox-inline
+              input.checkbox-input(type='checkbox', name=`permissions[]`, value=val, id=`perm_${val}`)
+              label(for=`perm_${val}`)=val
+      div.form-group
+        label(for='suggested_page_name') What would you suggest the bot should be called:
+        input.form-control(type='text' id='suggested_page_name' placeholder='Bot name' name='suggested_page_name')
+      button(type="submit") Install
+
+  h2 Running Locally
+  p.
+    Make sure you have #[a(href="http://nodejs.org/") Node.js] installed.
+  pre.
+    $ git clone <repo>
+    $ cd workplace-demo-authentication
+    $ touch .env
+  p.
+    Open the #[code .env] file and enter the credential details of your app
+    in the following form:
+  pre.
+    APP_ID={from your workplace app}
+    APP_NAME={from your workplace app}
+    APP_SECRET={from your workplace app}
+    REDIRECT_URI={URL where this app is running the /page_install route}
+    VERIFY_TOKEN={whatever you want}
+  pre.
+    $ npm install
+    $ npm start
+  p.
+    Your app should now be running on
+    #[a(href="http://localhost:5000/") localhost:5000].

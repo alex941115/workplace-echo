@@ -1,0 +1,246 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 200px auto;
+    max-width: 1400px;
+    font-size: 18px;
+  }
+  
+  a {
+    color: #3578e5;
+    text-decoration: none;
+  }
+  
+  pre {
+    font-size: 14px;
+  }
+  
+  .logo {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+    margin-right: 20px;
+    width: 50px;
+  }
+  
+  .logo h1 {
+    align-self: center;
+    color: #333;
+    font-size: 42px;
+    margin: 0;
+  }
+  
+  #header {
+    background-color: #333;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  #header ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #header li a, #header .user {
+    color: white;
+    display: block;
+    padding: 8px 24px;
+  }
+  
+  #header .nav-item:hover {
+    background-color: #3578e5;
+  }
+  
+  #main {
+    margin-top: 8px;
+  }
+  
+  form.small {
+    width: 200px;
+  }
+  
+  .label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  input[type=text], input[type=password], textarea  {
+    margin-top: 2px;
+    width: 100%;
+    padding: 8px;
+  }
+  
+  button, .button {
+    background-color: #3578e5;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 12px;
+    display: inline-block;
+  }
+  
+  button:hover, .button:hover {
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+  }
+  
+  textarea {
+    height: 300px;
+    resize: none;
+  }
+  
+  .input-group {
+    display: flex;
+  }
+  
+  .dropdown {
+    min-width: 200px;
+  }
+  
+  table {
+    width: 100%;
+    border-spacing: 0;
+  }
+  
+  table thead {
+    text-align: left;
+  }
+  
+  thead tr {
+    background-color: #E8E8E8;
+  }
+  
+  table tbody tr:hover {
+    background-color: #E8E8E8;
+  }
+  
+  table th, table td {
+    padding: 10px;
+  }
+  
+  .link-table td {
+    padding: 0;
+  }
+  
+  .link-table td a {
+    padding: 10px;
+    color: black;
+    display: block;
+    min-height: 19px;
+  }
+  
+  p.document {
+    text-align: justify;
+  }
+  
+  #cpy {
+    cursor: pointer;
+  }
+  
+  .pusheen {
+    text-align: center;
+  }
+  
+  .meta {
+    font-size: .8rem;
+    font-weight: bold;
+  }
+  
+  .actions form {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+  
+  .task {
+    color: white;
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: bold;
+    min-width: 60px;
+    padding: 4px;
+    text-align: center;
+  }
+  
+  .task-high {
+    background-color: #e62546;
+  }
+  
+  .task-medium {
+    background-color: #ff8216;
+  }
+  
+  .task-low {
+    background-color: #f0c850;
+  }
+  
+  .debug {
+    font-size: .8rem;
+  }
+  
+  .file-actions {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  .file-actions a {
+    background-color: #3578e5;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 12px;
+    min-width: 60px;
+    margin-left: 8px;
+  }
+  
+  .file-actions a:hover {
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+  }
+  
+  .callbacks {
+    table-layout: fixed;
+  }
+  
+  .callbacks pre {
+    font-size: .9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .community-actions {
+    margin-bottom: 4px;
+  }
+  
+  .sharedposts {
+    padding-left: 0;
+  }
+  
+  .sharedposts li {
+    align-items: center;
+    display: flex;
+    margin-bottom: 8px;
+  }
+  
+  .sharedposts li img {
+    margin-right: 8px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .sharedposts-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sharedposts-info p {
+    margin: 0;
+  }
+  
