@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const qs = require('querystring');
 const graph = require('../graph');
+const BadRequest = require('./api/BadRequest.js');
 
 const router = express.Router();
 
