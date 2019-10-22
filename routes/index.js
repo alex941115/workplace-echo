@@ -14,7 +14,7 @@ router.route('/')
   .get((req, res, next) => res.render('home'));
 
 router.route('/favicon.ico')
-  .get((req, res, next) => res.send(404));
+  .get((req, res, next) => res.sendStatus(404));
 
 router.route('/index')
   .get((req, res, next) => {
