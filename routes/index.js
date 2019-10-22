@@ -20,6 +20,7 @@ router.route('/index')
   .get((req, res, next) => {
     let app_id = process.env.APP_ID;
     let redirect_uri = process.env.REDIRECT_URI;
+    console.log('Redirect uri: ' + redirect_uri);
     return res.render(
       'index',
       {
