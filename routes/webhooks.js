@@ -41,7 +41,7 @@ function echo(messagingEvent) {
             .body({
               recipient: {
                 id: messagingEvent.sender.id
-              }, 
+              },
               message: {
                 text: 'I\'m ' + installation.botName + '. Received: ' + messagingEvent.message.text
               }
@@ -52,7 +52,7 @@ function echo(messagingEvent) {
     } else {
         console.log('No matching installation with page id: ' + recpient);
     }
-    
+
 
     return;
 }
@@ -64,9 +64,6 @@ router.use(bodyParser.json({ verify: xhub }));
 router.route('/webhook')
     // Accepts POST requests at /webhook endpoint to receive actual webhook events
     .post((req, res, next) => {
-        let appId = req.params.app_id;
-        console.log('POST /webhook/' + appId + ', app: ' + process.env.APP_NAME);
-
         // Parse the request body from the POST
         let body = req.body;
 
@@ -85,7 +82,7 @@ router.route('/webhook')
                     }
                 });
             });
-            
+
             res.sendStatus(200);
         } else {
             // Otherwise just output the body and return 200
@@ -104,5 +101,5 @@ router.route('/webhook')
         }
         return res.status(200).send(params['hub.challenge']);
     });
-  
+
  module.exports = router;

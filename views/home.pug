@@ -1,18 +1,80 @@
 extends layout
 
 block content
+  h2.
+    Echo Bot
+
   p.
-    A Workplace application demonstrating account linking, file preview and composer integration. This models
-    a simple document store with very simple privacy rules.
+    A Workplace application demonstrating a Workplace 3rd Party App that can be installed many times in a single
+    Workplace tenant.
+
+  p.
+    To run this app, you'll first need to request a Workplace 3rd Party App and become an app admin using
+    the app admin tool.
+
+  a(href="https://developers.facebook.com/apps/") Facebook App Dashboard
+
+  h2 Running This Node App
+  p.
+    Make sure you have #[a(href="http://nodejs.org/") Node.js] installed.
+  pre.
+    $ git clone <repo>
+    $ cd workplace-echo
+    $ touch .env
+  p.
+    Open the #[code .env] file and enter the credential details of your app
+    in the following form:
+  pre.
+    APP_ID={App Settings > Basic > App ID}
+    APP_SECRET={App Settings > Basic > App Secret}
+    REDIRECT_URI={your host}/page_install
+    VERIFY_TOKEN={any string}
+  pre.
+    $ npm install
+    $ npm start
+  p.
+    Your app should now be running on
+    #[a(href="http://localhost:5000/") localhost:5000].
+    Note that you'll need to deploy the app to a public internet site to subscribe to Workplace webhooks.
+  p.
+    Deploy this app to your hosting environment (SSL is required to subscribe to Workplace webhooks).
+
+  p.
+    Go to your Workplace app's configuration from the
+    #[a(href="https://developers.facebook.com/apps") Facebook app dashboard].
+
+  ul
+    li
+      | From the app listing page, click on your Workplace app
+    li
+      | From the left nav, choose Facebook Login > Settings
+    li
+      | Input into the "Valid OAuth Redirect URIs" field the same environment value you used above
+
+  p.
+    Subscribe your app to Page webhooks by sending this cURL request:
+
+  pre
+    | $ curl -X POST \
+    | 'https://graph.facebook.com/{app-id}/subscriptions?object=page&fields=messages&callback_url={your host/webhooks}}&verify_token={from your .env file}&access_token={app id}|{app secret}'
+
+  p.
+    You can now test installing your app into a Workplace tenant:
+
+
+  a(href="./page_install") Initiate App Installation
+
+
+  h2.
+    More Information
+
   p.
     The documentation for the features demonstrated in this application can be found on the official developers
     resource for Facebook and Workplace.
   ul
     li
-      a(href="https://developers.facebook.com/docs/workplace/share-extensions") Share Extensions
+      a(href="https://developers.facebook.com/docs/workplace/third-party-apps/introduction") Workplace 3rd Party Apps
   p.
-    The source code for this application can be found on #[a(href="https://github.com/jokr/taaskly") GitHub].
-    You can also directly deploy it to #[a(href="https://heroku.com/deploy?template=https://github.com/jokr/taaskly") Heroku]
-    to run your own version.
+    The source code for this application can be found on #[a(href="https://github.com/alex941115/workplace-echo") GitHub].
   p.
     You can also learn more about #[a(href="https://www.facebook.com/workplace") Workplace] and start using it today for free.
