@@ -1,16 +1,16 @@
 {
-  "name": "messenger-quick-start",
+  "name": "workplace-echo",
   "version": "1.0.0",
-  "description": "An example webhook for Facebook Messenger quick start tutorial.",
+  "description": "An example Workplace 3rd Party App quick start tutorial.",
   "main": "app.js",
   "scripts": {
     "start": "node --inspect index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fbsamples/messenger-platform-samples.git"
+    "url": "git+https://github.com/alex941115/workplace-echo.git"
   },
-  "author": "Facebook",
+  "author": "Alex Duff",
   "license": "ISC",
   "dependencies": {
     "base64url": "^3.0.1",
@@ -26,7 +26,7 @@
     "node": "~4.1.2"
   },
   "bugs": {
-    "url": "https://github.com/fbsamples/messenger-platform-samples/issues"
+    "url": "https://github.com/alex941115/workplace-echo/issues"
   },
-  "homepage": "https://github.com/fbsamples/messenger-platform-samples#readme"
+  "homepage": "https://github.com/alex941115/workplace-echo#readme"
 }
