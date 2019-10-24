@@ -51,7 +51,7 @@ app.listen(app.get('port'), () => {
     .qs({
       object: 'page',
       fields: 'messages',
-      callback_url: process.env.BASE_URL + '/webhooks',
+      callback_url: process.env.BASE_URL + '/webhook',
       verify_token: process.env.VERIFY_TOKEN,
       access_token: process.env.APP_ID + '|' + process.env.APP_SECRET,
     })
