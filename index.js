@@ -46,5 +46,20 @@ app.listen(app.get('port'), () => {
     throw new Error('Missing required env variable VERIFY_TOKEN');
   }
 
+  graph(process.env.APP_ID + '/subscriptions')
+    .post()
+    .qs({
+      object: 'page',
+      fields: 'messages',
+      callback_url: process.env.BASE_URL + '/webhooks',
+      verify_token: process.env.VERIFY_TOKEN,
+      access_token: process.env.APP_ID + '|' + process.env.APP_SECRET,
+    })
+    .send()
+    .then(tokenResponse => {
+      console.log(tokenResponse);
+    });
+
+
   console.log(`App is running on port ${app.get('port')}.`);
 });
