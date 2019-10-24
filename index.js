@@ -1,24 +1,3 @@
-
-/**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger Platform Quick Start Tutorial
- *
- * This is the completed code for the Messenger Platform quick start tutorial
- *
- * https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start/
- *
- * To run this code, you must do the following:
- *
- * 1. Deploy this code to a server running Node.js
- * 2. Run `npm install`
- * 3. Update the VERIFY_TOKEN
- *
- */
-
 'use strict';
 
 // Imports dependencies and set up http server
@@ -27,7 +6,9 @@ const dotenv = require('dotenv');
 const express = require('express');
 
 const routes = require('./routes');
-const installations = require('./installations');
+
+const qs = require('querystring');
+const graph = require('./graph');
 
 const app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -47,5 +28,23 @@ app.use(routes);
 dotenv.config();
 
 app.listen(app.get('port'), () => {
+
+  // Ensure that required env variables are defined
+  if(process.env.APP_ID === undefined) {
+    throw new Error('Missing required env variable APP_ID');
+  }
+
+  if(process.env.APP_SECRET === undefined) {
+    throw new Error('Missing required env variable APP_SECRET');
+  }
+
+  if(process.env.BASE_URL === undefined) {
+    throw new Error('Missing required env variable BASE_URL');
+  }
+
+  if(process.env.VERIFY_TOKEN === undefined) {
+    throw new Error('Missing required env variable VERIFY_TOKEN');
+  }
+
   console.log(`App is running on port ${app.get('port')}.`);
 });

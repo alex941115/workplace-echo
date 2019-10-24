@@ -19,7 +19,7 @@ router.route('/favicon.ico')
 router.route('/index')
   .get((req, res, next) => {
     let app_id = process.env.APP_ID;
-    let redirect_uri = process.env.REDIRECT_URI;
+    let redirect_uri = process.env.BASE_URL + '/page_install';
     return res.render(
       'index',
       {
@@ -30,7 +30,7 @@ router.route('/index')
   });
 
 // Accept the installation redirect from Workplace and exchange the install code for an access token
-router.route('/page_install/:app_id')
+router.route('/page_install')
   .get((req, res, next) => {
     if (!req.query.code) {
       return res
@@ -41,7 +41,7 @@ router.route('/page_install/:app_id')
       .qs({
         client_id: process.env.APP_ID,
         client_secret: process.env.APP_SECRET,
-        redirect_uri: process.env.REDIRECT_URI,
+        redirect_uri: process.env.BASE_URL + '/page_install',
         code: req.query.code,
       })
       .send()
