@@ -27,7 +27,7 @@ block content
   pre.
     APP_ID={App Settings > Basic > App ID}
     APP_SECRET={App Settings > Basic > App Secret}
-    BASE_URI=https://{your hostname}
+    BASE_URL=https://{your hostname}
     VERIFY_TOKEN={any string}
   pre.
     $ npm install
@@ -50,13 +50,6 @@ block content
       | From the left nav, choose Facebook Login > Settings
     li
       | Input into the "Valid OAuth Redirect URIs" field the same environment value you used above
-
-  p.
-    Subscribe your app to Page webhooks by sending this cURL request:
-
-  pre
-    | $ curl -X POST \
-    | 'https://graph.facebook.com/{app-id}/subscriptions?object=page&fields=messages&callback_url={your host/webhooks}}&verify_token={from your .env file}&access_token={app id}|{app secret}'
 
   p.
     You can now test installing your app into a Workplace tenant:
