@@ -10,6 +10,9 @@ const routes = require('./routes');
 const qs = require('querystring');
 const graph = require('./graph');
 
+// Initialize the installations global
+const installations = require('./installations');
+
 const app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'pug');
