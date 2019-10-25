@@ -54,13 +54,14 @@ router.route('/page_install')
           graph('community')
             .token(tokenResponse.access_token)
             .qs({ fields: 'install,name' })
-            .send()
+            .send(),
         ])
           .then(responses => {
             const pageResponse = responses[0];
+            console.log(`pageResponse: ${pageResponse}.`);
+
             const communityResponse = responses[1];
-            console.log(pageResponse);
-            console.log(communityResponse);
+            console.log(`communityResponse: ${communityResponse}.`);
 
             // keep the installation information  (page, access token, and bot name) in memory for demo purposes
             const installations = global.installations;

@@ -46,6 +46,7 @@ app.listen(app.get('port'), () => {
     throw new Error('Missing required env variable VERIFY_TOKEN');
   }
 
+  // Subscribe to Page webhooks (this is the chat message webhook receiver)
   graph(process.env.APP_ID + '/subscriptions')
     .post()
     .qs({
@@ -57,9 +58,24 @@ app.listen(app.get('port'), () => {
     })
     .send()
     .then(tokenResponse => {
-      console.log(tokenResponse);
+      console.log(`Page webhook response ${tokenResponse}.`);
     });
 
+    // Subscribe to the app uninstall event (fires when company chooses to uninstall)
+    graph(process.env.APP_ID + '/subscriptions')
+      .post()
+      .token(tokenResponse.access_token)
+      .qs({
+        object: 'application',
+        fields: 'workplace_uninstall',
+        callback_url: process.env.BASE_URL + '/webhook',
+        verify_token: process.env.VERIFY_TOKEN,
+        access_token: process.env.APP_ID + '|' + process.env.APP_SECRET,
+      })
+      .send()
+    .then(tokenResponse => {
+      console.log(`Uninstall subscription webhook response ${tokenResponse}.`);
+    });
 
   console.log(`App is running on port ${app.get('port')}.`);
 });
