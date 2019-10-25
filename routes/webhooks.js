@@ -67,7 +67,7 @@ router.route('/webhook')
         // Parse the request body from the POST
         let body = req.body;
 
-        if(body.object === "page") {
+        if(body.object === 'page') {
 
             // There may be multiple if Facebook has batched the webhook events
             body.entry.forEach(function (pageEntry) {
@@ -83,6 +83,9 @@ router.route('/webhook')
                 });
             });
 
+            res.sendStatus(200);
+        } else if(body.object === 'application') {
+            console.log('Application event' + JSON.stringify(body, null, 2));
             res.sendStatus(200);
         } else {
             // Otherwise just output the body and return 200
