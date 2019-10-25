@@ -33,7 +33,7 @@ function echo(messagingEvent) {
     console.log('Message event' + JSON.stringify(messagingEvent, null, 2));
 
     let recpient = messagingEvent.recipient.id;
-    var installation = global.installations.get(recpient);
+    var installation = global.installations.getBotByPageId(recpient);
 
     if (installation !== null) {
         graph('me/messages')
@@ -52,7 +52,6 @@ function echo(messagingEvent) {
     } else {
         console.log('No matching installation with page id: ' + recpient);
     }
-
 
     return;
 }
@@ -86,6 +85,14 @@ router.route('/webhook')
             res.sendStatus(200);
         } else if(body.object === 'application') {
             console.log('Application event' + JSON.stringify(body, null, 2));
+            body.entry.forEach(function (applicationEntry){
+                applicationEntry.changes.forEach(function( applicationEvent){
+                    if(applicationEvent.field === 'workplace_uninstall') {
+                        global.installations.deregister(applicationEvent.value.install.id);
+                    }
+                });
+            });
+
             res.sendStatus(200);
         } else {
             // Otherwise just output the body and return 200

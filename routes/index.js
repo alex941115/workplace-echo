@@ -65,7 +65,12 @@ router.route('/page_install')
 
             // keep the installation information  (page, access token, and bot name) in memory for demo purposes
             const installations = global.installations;
-            installations.register(pageResponse.id, tokenResponse.access_token, pageResponse.name);
+            installations.registerBot(
+              pageResponse.id,
+              tokenResponse.access_token,
+              pageResponse.name,
+              communityResponse.install.id
+            );
 
             return {
               id: pageResponse.id,

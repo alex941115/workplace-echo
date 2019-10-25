@@ -3,20 +3,34 @@
 class Installations {
 
     constructor() {
-        this.installations = {};
+        this.botsByPageId = {};
+        this.pagesByInstallationId = {};
     }
 
-    register(pageId, accessToken, botName) {
-        this.installations[pageId] = {
+    registerBot(pageId, accessToken, botName, installationId) {
+        this.botsByPageId[pageId] = {
             'accessToken': accessToken,
             'botName': botName,
-        }
+        };
+
+        this.pagesByInstallationId[installationId] = pageId;
 
         return;
     }
 
-    get(pageId) {
-        return this.installations[pageId];
+    getBotByPageId(pageId) {
+        return this.botsByPageId[pageId];
+    }
+
+    deregister(installationId) {
+        // lookup the page based on the installation id
+        pageId = this.pagesByInstallationId[installationId];
+
+        // remove this bot from memory
+        delete this.botsByPageId[pageId];
+
+        // remove the cross reference by installation id
+        delete this.pagesByInstallationId[installationId];
     }
 
 }
