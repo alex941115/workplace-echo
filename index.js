@@ -64,7 +64,6 @@ app.listen(app.get('port'), () => {
     // Subscribe to the app uninstall event (fires when company chooses to uninstall)
     graph(process.env.APP_ID + '/subscriptions')
       .post()
-      .token(tokenResponse.access_token)
       .qs({
         object: 'application',
         fields: 'workplace_uninstall',
