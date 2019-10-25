@@ -24,13 +24,15 @@ class Installations {
 
     deregister(installationId) {
         // lookup the page based on the installation id
-        pageId = this.pagesByInstallationId[installationId];
+        const pageId = this.pagesByInstallationId[installationId];
 
-        // remove this bot from memory
-        delete this.botsByPageId[pageId];
+        if(pageId !== null) {
+            // remove this bot
+            delete this.botsByPageId[pageId];
 
-        // remove the cross reference by installation id
-        delete this.pagesByInstallationId[installationId];
+            // remove the cross reference by installation id
+            delete this.pagesByInstallationId[installationId];
+        }
     }
 
 }
