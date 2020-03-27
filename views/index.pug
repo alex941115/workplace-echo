@@ -23,7 +23,7 @@ block content
     input(type="hidden", name="redirect_uri", value=redirectUri)
     div.form-group
       p Permissions:
-        each val in ["message", "read_user_email", "workplace_security"]
+        each val in ["message", "read_user_email", "receive_security_logs"]
           div.checkbox-inline
             input.checkbox-input(type='checkbox', name=`permissions[]`, value=val, id=`perm_${val}`)
             label(for=`perm_${val}`)=val
